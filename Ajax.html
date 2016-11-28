@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+<title>Demo</title>
+<style>
+body, input, select, button,  {
+	font-size: 18px;
+	line-height:1.7;
+}
+</style>	
+</head>
+
+<body>
+
+<h1>员工查询</h1>
+
+<label for="input">请输入员工编号：</label>
+<input type="input" id="input" />
+<button id="search">查询</button>
+<p id="searchResult"> </p>
+
+<h1>员工添加</h1>
+<label for="name">员工姓名:<input type="input"  id="name"/></label><br>
+<label for="number">员工编号:<input type="input" id="number"/></label><br>
+<label for="sex">员工性别:<input type="input" id="sex"></label><br>
+<label for="job">员工职位:<input type="input" id="job"></label><br>
+<input type="button" value="添加" id="add">
+<p id="addresult"></p>
+<script>
+//   var btn = document.getElementById("search"),
+//   	  add = document.getElementById("add");
+//   btn.onclick = function(){
+//   var result = new XMLHttpRequest();
+//   var number = document.getElementById("input");
+//   result.open("GET","untitled.php?number="+number.value);
+//   result.send();
+//   result.onreadystatechange = function(){
+//   if(result.readyState===4 && result.status===200){
+//   	document.getElementById("searchResult").innerHTML = result.responseText;
+//   	 	}
+// 	 }
+// 	}
+// 	add.onclick = function(){
+// 		var result = new XMLHttpRequest();
+// 		result.open("POST","untitled.php",true);
+// 		var data = "name="+document.getElementById("name").value+
+// 					"&number="+document.getElementById("number").value+
+// 					"&sex="+document.getElementById("sex").value+
+// 					"&job="+document.getElementById("job").value;
+// 		result.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+// 		result.send(data);
+// 		result.onreadystatechange = function(){
+// 		if(result.readyState === 4 && result.status===200){
+// 			document.getElementById("addresult").innerHTML = result.responseText;
+// 		}
+// 	}
+// }
+
+$(document).ready(function(){
+		$("#search").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"untitled.php?number="+$("#input").val(),
+				
+				success:function(data){
+					if(data.success){
+						$("#searchResult").html(data);
+					}else{
+						$("#searchResult").html("出现错误："+data.responseText);
+					}
+				},
+				error:function(jqXHR){
+					alert("出现错误:"+jqXHR.status);
+				}
+			});
+		});
+	});
+
+
+</script>
+</body>
+</html>

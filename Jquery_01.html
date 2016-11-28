@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+<title>JQuery_Ajax</title>
+<style>
+body, input, select, button,  {
+	font-size: 18px;
+	line-height:1.7;
+}
+</style>	
+</head>
+
+<body>
+
+<h1>员工查询</h1>
+
+<label for="input">请输入员工编号：</label>
+<input type="text" id="input" />
+<button id="search">查询</button>
+<p id="searchResult"> </p>
+
+<h1>员工添加</h1>
+<label for="name">员工姓名:<input type="input"  id="name"/></label><br>
+<label for="number">员工编号:<input type="input" id="number"/></label><br>
+<label for="sex">员工性别:<input type="input" id="sex"></label><br>
+<label for="job">员工职位:<input type="input" id="job"></label><br>
+<input type="button" value="添加" id="add">
+<p id="addresult"></p>
+<script>
+	$(document).ready(function(){
+		$("#search").click(function(){
+			result=$.ajax({
+				type:"GET",
+				url:"untitled.php?number="+$("#input").val(),
+
+				success:function(data){
+					$("#searchResult").html(data);
+				},
+				error:function(jqXHR){
+					alert("出现错误:"+jqXHR.status);
+				}
+			});
+		});
+
+		$("#add").click(function(){
+			Ajax = $.ajax({
+				type:"POST",
+				url:"untitled.php",
+				dataType:"json",
+				data : {
+					   name:$("#name").val(),
+					   number:$("#number").val(),
+					   sex:$("#sex").val(),
+					   job:$("#job").val()
+					},
+				success:function(data){
+					$("#addresult").html(data);
+				},
+				error:function(){
+					$("#addresult").html("未知错误");
+				}
+			});
+		});
+	});
+
+
+</script>
+</body>
+</html>
