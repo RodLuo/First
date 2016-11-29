@@ -33,7 +33,7 @@ body, input, select, button,  {
 		$("#search").click(function(){
 			result=$.ajax({
 				type:"GET",
-				url:"untitled.php?number="+$("#input").val(),
+				url:"First/untitled.php?number="+$("#input").val(),
 
 				success:function(data){
 					$("#searchResult").html(data);
@@ -47,7 +47,7 @@ body, input, select, button,  {
 		$("#add").click(function(){
 			Ajax = $.ajax({
 				type:"POST",
-				url:"untitled.php",
+				url:"First/untitled.php",
 				dataType:"json",
 				data : {
 					   name:$("#name").val(),
